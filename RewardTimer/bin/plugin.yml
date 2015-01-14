@@ -1,0 +1,27 @@
+name: Reward Timer v1.0.0
+version: 1.0.0
+main: io.github.synthh.rewardtimer.RewardTimer
+description: A plugin that rewards players for playing on the server.
+
+commands:
+   rtstart:
+      usage: /<command>
+      description: (Re-)enables plugin features.
+      permission: RewardTimer.rtstart
+      permission-message: You do not have <permission>.
+   rtstop:
+      usage: /<command>
+      description: Disables plugin features.
+      permission: RewardTimer.rtstop
+      permission-message: You do not have <permission>.
+   rtsetxp:
+      usage: /<command> [xp]
+      description: Sets the amount of XP to be given. (1 = one level)
+      permission: RewardTimer.rtsetxp
+      permission-message: You do not have <permission>.
+   rtsettimer:
+      usage: /<command> [interval]
+      description: Sets the amount of time between reward drops. (1200 = one minute)
+      permission: RewardTimer.rtsettimer
+      permission-message: You do not have <permission>.
+      
