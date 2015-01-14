@@ -15,10 +15,7 @@ public class RewardTimerCommandExecutor implements CommandExecutor {
 	}
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
-		
-		Player p = (Player) sender;
-		togglePluginState(p);
-		
+
 		if (cmd.getName().equalsIgnoreCase("rtstart")) {
 			enabled(true);
 	    	return true;

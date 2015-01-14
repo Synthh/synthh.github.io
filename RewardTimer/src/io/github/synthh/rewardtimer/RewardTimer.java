@@ -1,9 +1,5 @@
 package io.github.synthh.rewardtimer;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -30,22 +26,18 @@ public final class RewardTimer extends JavaPlugin {
 	public void onDisable() {
 		getLogger().info("onDisable has been invoked.");
 	}
-	
-	public Map<KeyType, DataType> HashMapName = new HashMap<KeyType, DataType>();
-	public Map<UUID, Boolean> pluginEnabled = new HashMap<UUID, Boolean>();
-	public Map<UUID, Boolean> isGodMode = new HashMap<UUID, Boolean>();
-	
+
 	public boolean timer() {
-                this.getServer().getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
-						public void run() {
-                                for(Player p : Bukkit.getServer().getOnlinePlayers()) {
-                                        p.setExp(p.getExp() + 10);
-                                        }
-                                }
-                        }
-                , 12000, 12000);
-				return true;
-        }
+		this.getServer().getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
+			public void run() {
+				for(Player p : Bukkit.getServer().getOnlinePlayers()) {
+					p.setExp(p.getExp() + 10);
+				}
+			}
+		}
+		, 12000, 12000);
+		return true;
+	}
 	
 	public boolean enabled(boolean b) {
         if(b == true ){
@@ -58,14 +50,14 @@ public final class RewardTimer extends JavaPlugin {
 		return false;   
     }
 	
-public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
+	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
 		
 		if (cmd.getName().equalsIgnoreCase("rtstart")) {
 			enabled(true);
-	    	return true;
-	    }
+			return true;
+		}
 		
-	    if (cmd.getName().equalsIgnoreCase("rtstop")) {
+		if (cmd.getName().equalsIgnoreCase("rtstop")) {
 	    	enabled(false);
 	    	return false;
 	    }
@@ -99,6 +91,7 @@ public boolean onCommand(CommandSender sender, Command cmd, String commandLabel,
 	    			return false;
 	    		}
 	    	}
-	    } return false;
-	}
+	    }
+		return false;
+	}   
 }
