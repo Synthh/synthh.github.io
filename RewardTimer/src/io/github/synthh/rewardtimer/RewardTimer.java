@@ -7,57 +7,54 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
- 
 public final class RewardTimer extends JavaPlugin {
-	
+
 	@Override
 	public void onEnable() {
+		timer();
 		getLogger().info("onEnable has been invoked.");
-		/*for (Player p : Bukkit.getServer().getOnlinePlayers()) {
-		    playerList.put(p.getName(), playerData(p));
-		}*/
 		this.getCommand("rtstart").setExecutor(new RewardTimerCommandExecutor(this));
 		this.getCommand("rtstop").setExecutor(new RewardTimerCommandExecutor(this));
 		this.getCommand("rtsetxp").setExecutor(new RewardTimerCommandExecutor(this));
 		this.getCommand("rtsettimer").setExecutor(new RewardTimerCommandExecutor(this));
 	}
-	
+
 	@Override
 	public void onDisable() {
 		getLogger().info("onDisable has been invoked.");
 	}
 
+	private boolean enabled = false;
+
 	public void timer() {
-		this.getServer().getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
-			public void run() {
-				for(Player p : Bukkit.getServer().getOnlinePlayers()) {
-					p.setExp(p.getExp() + 10);
-				}
-			}
-		}
-		, 12000, 12000);
+		this.getServer().getScheduler()
+				.scheduleSyncRepeatingTask(this, new Runnable() {
+					public void run() {
+						if (!enabled)
+							return;
+						for (Player p : Bukkit.getServer().getOnlinePlayers()) {
+							p.setExp(p.getExp() + 10);
+						}
+					}
+				}, 12000, 12000);
 	}
-	
-	public boolean enabled(boolean b) {
-        if(b == true ){
-        	timer();
-        	return true;
-            //TODO
-        } else {
-            // enable plugin stuff
-        }
-		return false;   
-    }
-	
+
+	/*
+	 * public boolean enabled(boolean b) { if(b == true ){
+	 * 
+	 * return true; //TODO } else { // enable plugin stuff return false; } }
+	 */
+
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
 		
 		if (cmd.getName().equalsIgnoreCase("rtstart")) {
-			enabled(false);
-			return false;
+			if (enabled = !enabled); { //is this right?
+				return false;
+			}
 		}
 		
 		if (cmd.getName().equalsIgnoreCase("rtstop")) {
-	    	enabled(true);
+	    	//TODO
 	    	return true;
 	    }
 	    
@@ -80,17 +77,26 @@ public final class RewardTimer extends JavaPlugin {
 		    	    }
 	    	    }
 	    	}
+	    }
+	    if (cmd.getName().equalsIgnoreCase("rtsettimer")) {
 	    	if (args.length == 0) {
 	    		sender.sendMessage("Please specify a time in ticks! (1200 = 1 Minute");
-	    	}
+	    		return false;
+	    		}
 	    	if (args.length == 1){
 	    		int time = Integer.parseInt(args[0]);
 	    		if(time < 20) {
-	    			sender.sendMessage(ChatColor.RED + "Please choose an XP rate above 0!");
+	    			sender.sendMessage(ChatColor.RED + "Please choose an interval above 20!");
 	    			return false;
 	    		}
 	    	}
-	    }
-		return false;
-	}   
+	    	for (Player p : Bukkit.getServer().getOnlinePlayers()) {
+	    		if (p.hasPermission("RewardTimer.rtsettimer")) {
+	    			//TODO
+	    			return true;
+	    		}
+	    	}
+	    }	
+	    	return false;
+	}
 }
