@@ -13,11 +13,11 @@ public final class RewardTimer extends JavaPlugin {
 	public void onEnable() {
 		timer();
 		getLogger().info("onEnable has been invoked.");
-		RewardTimerCommandExecutor rtExecutor = new RewardTimerCommandExecutor(this);
+		/*RewardTimerCommandExecutor rtExecutor = new RewardTimerCommandExecutor(this);
         this.getCommand("rtstart").setExecutor(rtExecutor);
         this.getCommand("rtstop").setExecutor(rtExecutor);
         this.getCommand("rtsetxp").setExecutor(rtExecutor);
-        this.getCommand("rtsettimer").setExecutor(rtExecutor);
+        this.getCommand("rtsettimer").setExecutor(rtExecutor);*/
 	}
 
 	@Override
@@ -57,7 +57,7 @@ public final class RewardTimer extends JavaPlugin {
 			String state = isEnabled() ? "&cdisabled" : "&aenabled";
 		    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "RT has been " + state + "."));
 		    return true;
-		}
+		} 
 	    
 	    if (cmd.getName().equalsIgnoreCase("rtsetxp")) {
 	    	if (args.length == 0){
