@@ -36,7 +36,6 @@ public final class RewardTimer extends JavaPlugin {
 			}
 		}
 		, 12000, 12000);
-		return true;
 	}
 	
 	public boolean enabled(boolean b) {
@@ -53,13 +52,13 @@ public final class RewardTimer extends JavaPlugin {
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
 		
 		if (cmd.getName().equalsIgnoreCase("rtstart")) {
-			enabled(true);
-			return true;
+			enabled(false);
+			return false;
 		}
 		
 		if (cmd.getName().equalsIgnoreCase("rtstop")) {
-	    	enabled(false);
-	    	return false;
+	    	enabled(true);
+	    	return true;
 	    }
 	    
 	    if (cmd.getName().equalsIgnoreCase("rtsetxp")) {
