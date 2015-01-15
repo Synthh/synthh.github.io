@@ -27,7 +27,7 @@ public final class RewardTimer extends JavaPlugin {
 		getLogger().info("onDisable has been invoked.");
 	}
 
-	public boolean timer() {
+	public void timer() {
 		this.getServer().getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
 			public void run() {
 				for(Player p : Bukkit.getServer().getOnlinePlayers()) {
