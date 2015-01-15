@@ -13,10 +13,11 @@ public final class RewardTimer extends JavaPlugin {
 	public void onEnable() {
 		timer();
 		getLogger().info("onEnable has been invoked.");
-		this.getCommand("rtstart").setExecutor(new RewardTimerCommandExecutor(this));
-		this.getCommand("rtstop").setExecutor(new RewardTimerCommandExecutor(this));
-		this.getCommand("rtsetxp").setExecutor(new RewardTimerCommandExecutor(this));
-		this.getCommand("rtsettimer").setExecutor(new RewardTimerCommandExecutor(this));
+		RewardTimerCommandExecutor rtExecutor = new RewardTimerCommandExecutor(this);
+        this.getCommand("rtstart").setExecutor(rtExecutor);
+        this.getCommand("rtstop").setExecutor(rtExecutor);
+        this.getCommand("rtsetxp").setExecutor(rtExecutor);
+        this.getCommand("rtsettimer").setExecutor(rtExecutor);
 	}
 
 	@Override
@@ -25,6 +26,10 @@ public final class RewardTimer extends JavaPlugin {
 	}
 
 	private boolean enabled = false;
+	
+	public void enabled() {
+		enabled = !enabled;
+	}
 
 	public void timer() {
 		this.getServer().getScheduler()
@@ -47,16 +52,12 @@ public final class RewardTimer extends JavaPlugin {
 
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
 		
-		if (cmd.getName().equalsIgnoreCase("rtstart")) {
-			if (enabled = !enabled); { //is this right?
-				return false;
-			}
+		if (cmd.getName().equalsIgnoreCase("rttoggle")) {
+			enabled();
+			String state = isEnabled() ? "&cdisabled" : "&aenabled";
+		    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "RT has been " + state + "."));
+		    return true;
 		}
-		
-		if (cmd.getName().equalsIgnoreCase("rtstop")) {
-	    	//TODO
-	    	return true;
-	    }
 	    
 	    if (cmd.getName().equalsIgnoreCase("rtsetxp")) {
 	    	if (args.length == 0){
