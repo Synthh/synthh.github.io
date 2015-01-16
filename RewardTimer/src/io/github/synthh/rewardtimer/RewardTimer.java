@@ -55,6 +55,7 @@ public final class RewardTimer extends JavaPlugin {
 		if (cmd.getName().equalsIgnoreCase("rttoggle")) {
 			enabled();
 			String state = isEnabled() ? "&cdisabled" : "&aenabled";
+			this.enabled();
 		    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "RT has been " + state + "."));
 		    return true;
 		} 
