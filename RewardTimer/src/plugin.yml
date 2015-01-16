@@ -6,13 +6,8 @@ description: A plugin that rewards players for playing on the server.
 commands:
   rtstart:
     usage: /<command>
-    description: (Re-)enables plugin features.
-    permission: RewardTimer.rtstart
-    permission-message: You do not have <permission>.
-  rtstop:
-    usage: /<command>
-    description: Disables plugin features.
-    permission: RewardTimer.rtstop
+    description: Toggles plugin features.
+    permission: RewardTimer.rttoggle
     permission-message: You do not have <permission>.
   rtsetxp:
     usage: /<command> [xp]
@@ -32,7 +27,7 @@ permissions:
       RewardTimer.rttoggle: true
       RewardTimer.rtsetxp: true
       RewardTimer.rtsettimer: true
-  RewardTimer.rtstart:
+  RewardTimer.rttoggle:
     description: Toggles the reward drop feature.
     default: op
   RewardTimer.rtsetxp:

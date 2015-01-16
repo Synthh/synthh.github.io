@@ -13,11 +13,14 @@ public final class RewardTimer extends JavaPlugin {
 	public void onEnable() {
 		timer();
 		getLogger().info("onEnable has been invoked.");
-		/*RewardTimerCommandExecutor rtExecutor = new RewardTimerCommandExecutor(this);
-        this.getCommand("rtstart").setExecutor(rtExecutor);
-        this.getCommand("rtstop").setExecutor(rtExecutor);
-        this.getCommand("rtsetxp").setExecutor(rtExecutor);
-        this.getCommand("rtsettimer").setExecutor(rtExecutor);*/
+		/*
+		 * RewardTimerCommandExecutor rtExecutor = new
+		 * RewardTimerCommandExecutor(this);
+		 * this.getCommand("rtstart").setExecutor(rtExecutor);
+		 * this.getCommand("rtstop").setExecutor(rtExecutor);
+		 * this.getCommand("rtsetxp").setExecutor(rtExecutor);
+		 * this.getCommand("rtsettimer").setExecutor(rtExecutor);
+		 */
 	}
 
 	@Override
@@ -26,7 +29,7 @@ public final class RewardTimer extends JavaPlugin {
 	}
 
 	private boolean enabled = false;
-	
+
 	public void enabled() {
 		enabled = !enabled;
 	}
@@ -50,55 +53,62 @@ public final class RewardTimer extends JavaPlugin {
 	 * return true; //TODO } else { // enable plugin stuff return false; } }
 	 */
 
-	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
-		
+	public boolean onCommand(CommandSender sender, Command cmd,
+			String commandLabel, String[] args) {
+
 		if (cmd.getName().equalsIgnoreCase("rttoggle")) {
-			enabled();
-			String state = isEnabled() ? "&cdisabled" : "&aenabled";
-			this.enabled();
-		    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "RT has been " + state + "."));
-		    return true;
-		} 
-	    
-	    if (cmd.getName().equalsIgnoreCase("rtsetxp")) {
-	    	if (args.length == 0){
-	    		sender.sendMessage(ChatColor.RED + "Please choose an XP rate.");
-	    		return false; 
-	    		}
-	    	
-	    	if (args.length == 1){
-	    	    int xprate = Integer.parseInt(args[0]);
-	    	    if(xprate < 1) {
-	    	    	sender.sendMessage(ChatColor.RED + "Please choose an XP rate above 0!");
-	    	    	return false;
-	    	    }
-	    	    for (Player p: Bukkit.getServer().getOnlinePlayers()) {
-		    	    if (p.hasPermission("RewardTimer.rtsetxp")) {
-		    	        //TODO
-		    	    	return true;
-		    	    }
-	    	    }
-	    	}
-	    }
-	    if (cmd.getName().equalsIgnoreCase("rtsettimer")) {
-	    	if (args.length == 0) {
-	    		sender.sendMessage("Please specify a time in ticks! (1200 = 1 Minute");
-	    		return false;
-	    		}
-	    	if (args.length == 1){
-	    		int time = Integer.parseInt(args[0]);
-	    		if(time < 20) {
-	    			sender.sendMessage(ChatColor.RED + "Please choose an interval above 20!");
-	    			return false;
-	    		}
-	    	}
-	    	for (Player p : Bukkit.getServer().getOnlinePlayers()) {
-	    		if (p.hasPermission("RewardTimer.rtsettimer")) {
-	    			//TODO
-	    			return true;
-	    		}
-	    	}
-	    }	
-	    	return false;
+			for (Player p : Bukkit.getServer().getOnlinePlayers()) {
+				if (p.hasPermission("RewardTimer.rttoggle")){
+				enabled();
+				String state = isEnabled() ? "&cdisabled" : "&aenabled";
+				this.enabled();
+				sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "RT has been " + state + "."));
+			return true;
+			}
+		return false;
+		}
+
+		if (cmd.getName().equalsIgnoreCase("rtsetxp")) {
+			if (args.length == 0) {
+				sender.sendMessage(ChatColor.RED + "Please choose an XP rate.");
+				return false;
+			}
+
+			if (args.length == 1) {
+				int xprate = Integer.parseInt(args[0]);
+				if (xprate < 1) {
+					sender.sendMessage(ChatColor.RED
+							+ "Please choose an XP rate above 0!");
+					return false;
+				}
+				for (Player p : Bukkit.getServer().getOnlinePlayers()) {
+					if (p.hasPermission("RewardTimer.rtsetxp")) {
+						// TODO
+						return true;
+					}
+				}
+			}
+		}
+		if (cmd.getName().equalsIgnoreCase("rtsettimer")) {
+			if (args.length == 0) {
+				sender.sendMessage("Please specify a time in ticks! (1200 = 1 Minute");
+				return false;
+			}
+			if (args.length == 1) {
+				int time = Integer.parseInt(args[0]);
+				if (time < 20) {
+					sender.sendMessage(ChatColor.RED
+							+ "Please choose an interval above 20!");
+					return false;
+				}
+			}
+			for (Player p : Bukkit.getServer().getOnlinePlayers()) {
+				if (p.hasPermission("RewardTimer.rtsettimer")) {
+					// TODO
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 }

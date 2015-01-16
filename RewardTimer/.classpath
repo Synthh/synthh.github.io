@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry including="**/*.java" kind="src" path="src"/>
-	<classpathentry kind="lib" path="/Users/James/Documents/spigot-api-1.8-R0.1-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="/Users/James/Documents/spigot_server.jar"/>
+	<classpathentry exported="true" kind="lib" path="/Users/James/Documents/spigot-api-1.8-R0.1-SNAPSHOT.jar"/>
+	<classpathentry exported="true" kind="lib" path="/Users/James/Documents/spigot_server.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
@@ -13,6 +13,5 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/James/Desktop/MC Server/spigot.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
