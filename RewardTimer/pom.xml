@@ -3,6 +3,16 @@
   <groupId>io.github.synthh</groupId>
   <artifactId>RewardTimer</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <resources>
+  	<resource>
+		<targetPath>.</targetPath>
+			<filtering>true</filtering>
+			<directory>src</directory>
+			<includes>
+				<include>*.yml</include>
+			</includes>
+		</resource>
+	</resources>
   <repositories>
   	<repository>
   		<id>spigot-repo</id>

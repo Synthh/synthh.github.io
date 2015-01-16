@@ -18,7 +18,7 @@ commands:
       usage: /<command> [xp]
       description: Sets the amount of XP to be given. (1 = one level)
       permission: RewardTimer.rtsetxp
-    permission-message: You do not have <permission>.
+      permission-message: You do not have <permission>.
    rtsettimer:
       usage: /<command> [interval]
       description: Sets the amount of time between reward drops. (1200 = one minute)
