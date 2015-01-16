@@ -68,7 +68,7 @@ public final class RewardTimer extends JavaPlugin {
 				return false;
 			}
 
-			if (cmd.getName().equalsIgnoreCase("rtsetxp")) {
+			/*if (cmd.getName().equalsIgnoreCase("rtsetxp")) {
 				if (args.length == 0) {
 					sender.sendMessage(ChatColor.RED
 							+ "Please choose an XP rate.");
@@ -108,9 +108,8 @@ public final class RewardTimer extends JavaPlugin {
 						// TODO
 						return true;
 					}
-				}
+				}*/
 			}
-		}
 		return false;
 	}
 }
