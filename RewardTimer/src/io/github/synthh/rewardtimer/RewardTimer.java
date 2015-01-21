@@ -13,6 +13,8 @@ public final class RewardTimer extends JavaPlugin {
 	public void onEnable() {
 		timer();
 		getLogger().info("onEnable has been invoked.");
+		getConfig().options().copyDefaults(true);
+        saveConfig();
 		/*
 		 * RewardTimerCommandExecutor rtExecutor = new
 		 * RewardTimerCommandExecutor(this);
@@ -41,7 +43,8 @@ public final class RewardTimer extends JavaPlugin {
 						if (!enabled)
 							return;
 						for (Player p : Bukkit.getServer().getOnlinePlayers()) {
-							p.setExp((float) (p.getExp() + 0.8));
+							float xprate = getConfig().getInt("xprate");
+							p.setExp((p.getExp() + xprate));
 						}
 					}
 				}, 120, 120);
@@ -58,7 +61,6 @@ public final class RewardTimer extends JavaPlugin {
 		if (cmd.getName().equalsIgnoreCase("rttoggle")) {
 			for (Player p : Bukkit.getServer().getOnlinePlayers()) {
 				if (p.hasPermission("RewardTimer.rttoggle")) {
-					enabled();
 					String state = isEnabled() ? "&cdisabled" : "&aenabled";
 					this.enabled();
 					sender.sendMessage(ChatColor.translateAlternateColorCodes(
@@ -68,7 +70,7 @@ public final class RewardTimer extends JavaPlugin {
 				return false;
 			}
 
-			/*if (cmd.getName().equalsIgnoreCase("rtsetxp")) {
+			if (cmd.getName().equalsIgnoreCase("rtsetxp")) {
 				if (args.length == 0) {
 					sender.sendMessage(ChatColor.RED
 							+ "Please choose an XP rate.");
@@ -105,11 +107,19 @@ public final class RewardTimer extends JavaPlugin {
 				}
 				for (Player p : Bukkit.getServer().getOnlinePlayers()) {
 					if (p.hasPermission("RewardTimer.rtsettimer")) {
-						// TODO
+						StringBuilder str = new StringBuilder();
+                        for (int i = 0; i < args.length; i++) {
+                                str.append(args[i] + " ");
+                        }
+                        String xprate = str.toString();
+                        getConfig().set("xprate", xprate);
+                        saveConfig();
+                        sender.sendMessage(ChatColor.GREEN + "XP Rate set to: " + xprate);
 						return true;
 					}
-				}*/
+				}
 			}
+		}
 		return false;
 	}
 }
